@@ -1,6 +1,8 @@
 import { Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 
+import css from "./SearchBar.module.css";
+
 export default function SearchBar({ onSearch }) {
   const handleSubmit = (values, actions) => {
     values.search !== ""
@@ -10,20 +12,25 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <header>
-      <Formik initialValues={{ search: "" }} onSubmit={handleSubmit}>
-        <Form>
-          <Field
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-            name="search"
-          />
-          <button type="submit">Search</button>
-          <Toaster />
-        </Form>
-      </Formik>
+    <header className={css.header}>
+      <div className={css.container}>
+        <Formik initialValues={{ search: "" }} onSubmit={handleSubmit}>
+          <Form className={css.header_form}>
+            <Field
+              className={css.header_form_input}
+              type="text"
+              autoComplete="off"
+              autoFocus
+              placeholder="Search images and photos"
+              name="search"
+            />
+            <button className={css.header_form_button} type="submit">
+              Search
+            </button>
+            <Toaster />
+          </Form>
+        </Formik>
+      </div>
     </header>
   );
 }
